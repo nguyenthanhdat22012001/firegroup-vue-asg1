@@ -112,9 +112,9 @@ var vm = new Vue({
        this.onValidatePixelID(this.pixelID);
     },
     onValidatePixelName(newValue) {
-      let validate = this.validateRegexOnlyHasString(newValue);
+      let validate = this.validateRegexOnlyHasNumber(newValue);
       if(newValue != ""){
-        if (!validate) {
+        if (validate) {
             this.error.pixelName = "Không được nhập kí tự số";
           }else{
             this.error.pixelName = "";
