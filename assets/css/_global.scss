@@ -1,0 +1,91 @@
+body{
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-black;
+}
+
+// # custom scroll #
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px; 
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+// # custom scroll #
+
+img{
+    max-width: 100%;
+}
+h4,h5{
+ font-weight: 600;
+}
+
+h4{
+    font-size: 24px;
+}
+
+.wrapper{
+    max-width: $width;
+    margin: 0 auto;
+}
+
+.container{
+    width: 100%;
+    padding: 33px 40px 27px 40px;
+    background-color: $bgr-white-medium;
+}
+
+.main{
+    margin-top: 36px
+}
+
+.Conversion{
+    @include flexbox();
+    margin-bottom: 25px;
+    gap: 20px;
+    &__content{
+        font-size: 12px;
+        color: $text-gray;
+    }
+    &__title{
+        margin-bottom: 3px;
+    }
+    &__link{
+        color: $text-blues
+    }
+}
+
+// class can reuse everywhere
+
+
+.flex-center{
+    @include flexbox(center); 
+}
+
+
+.flex-center-between{
+    @include flexbox(center,space-between); 
+}
+
+
+.text-strong{
+    font-weight: 700;
+}

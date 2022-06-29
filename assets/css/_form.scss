@@ -1,0 +1,110 @@
+
+.form{
+    &__group{
+        margin-bottom: 20px;
+    }
+    &__label{
+        display:inline-block;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+    &__input{
+        width: 100%;
+        border: 1px solid $bgr-white-dark;
+        border-radius: 4px;
+        padding: 12px 13px;
+        &::placeholder{
+            color: $text-gray;
+        }
+        &:focus {
+            outline: none;
+        }
+        &--search-icon{
+            padding: 8px 12px 8px 40px;
+            background: transparent url("../images/search.svg") no-repeat 15px center;
+        }
+    }
+    // select 
+    &__select{
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid $bgr-white-dark;
+        border-radius: 4px;
+        appearance:none;
+        background-image: url(../images/angle-down.svg);
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 5px;
+        &:focus {
+            outline: none;
+        }
+    }
+    // textarea 
+    &__textarea{
+        width: 100%;
+        border: 1px solid $bgr-white-dark;
+        border-radius: 4px;
+        padding: 8px 12px;
+        &:focus {
+            outline: none;
+        }
+    }
+    // radio 
+    &__group-radio{
+        cursor: pointer;
+        width: 200px;
+        @include flexbox(center);
+        color: $text-gray;
+        border: 1px solid $bgr-white-dark; 
+        padding: 10px;
+        border-radius: 4px;
+    }
+    &__label-radio{
+        cursor: pointer;
+        margin-left: 11px;
+        margin-bottom: 0;
+    }
+    &__input-radio{
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+    }
+    &__group-radio.active{
+        color: $text-blues;
+        border-color: $bgr-blues !important;
+    }
+    // checkbox
+   &__checkbox {
+        cursor: pointer;
+        position: relative;
+        width: 36px;
+        height: 20px;
+        -webkit-appearance: none;
+        background: #c6c6c6;
+        outline: none;
+        border-radius: 30px;
+        transition: 0.5s;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      &__checkbox:checked[type="checkbox"] {
+        background: #d30000;
+      }
+      &__checkbox::before {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        top: 3px;
+        left: 3px;
+        background: #fff;
+        transition: 0.5s;
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+      &__checkbox:checked[type="checkbox"]::before {
+        left: 36px - 17px;
+      }
+}

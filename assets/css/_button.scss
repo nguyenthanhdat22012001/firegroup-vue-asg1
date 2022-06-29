@@ -1,0 +1,43 @@
+.btn{
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 4px;
+    &--gray{
+        background-color: $bgr-white-dark;
+    }
+    &--blues{
+        color: $text-white;
+        background-color: $bgr-blues;
+        padding: 8px 133px;
+    }
+    &--none-border{
+        color: $text-black-light;
+        background-color: $bgr-white;
+        padding: 12px 13px;
+        font-weight: 400;
+    }
+    &--border-gray{
+        border: 1px solid $bgr-white-dark;
+        padding: 8px 26px;
+    }
+    &--border-yellow{
+        border: 1px solid $bgr-yellow;
+        color: $text-yellow;
+        padding: 10px 28px
+    }
+    &--green{
+        color: $text-green
+    }
+    &--icon-text{
+        @include flexbox(center);
+        gap: 4px;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    & svg {
+        path{
+          fill: currentColor; 
+        }
+    }
+}
