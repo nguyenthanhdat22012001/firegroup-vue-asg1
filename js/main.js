@@ -1,4 +1,4 @@
-let listBusinessAccount = [
+let list_business_account = [
   {
     id: 255697,
     name: "Account 1",
@@ -17,7 +17,7 @@ let listBusinessAccount = [
   },
 ];
 
-let listPixelAccount = [
+let list_pixel_account = [
   {
     id: 1,
     parentId: 255697,
@@ -83,101 +83,117 @@ let listPixelAccount = [
 var vm = new Vue({
   el: "#app",
   data: {
-    tabsAction: true,
-    isShowAlert: false,
-    listBusinessAccount: listBusinessAccount,
-    listPixelAccount: listPixelAccount,
-    SelectedBusinessAccount: "",
-    listPixelAccountFilter: [],
+    tabs_action: true,
+    list_business_account: list_business_account,
+    list_pixel_account: list_pixel_account,
 
-    validate: false,
-    pixelName: "",
-    pixelID: "",
-    error: {
-      pixelName: "",
-      pixelID: "",
+    formstate_input: false,
+    form_input: {
+      name: "",
+      id: "",
+    },
+
+    formstate_select: false,
+    form_select: {
+      select_business: "",
+      select_pixel: "",
     },
   },
   methods: {
     onChangeTabs(active) {
-      this.tabsAction = active;
+      this.tabs_action = active;
     },
+    // auto tabs
     onClickResetAutoTabs() {
-      this.SelectedBusinessAccount = "";
-      this.listPixelAccountFilter = [];
+      this.form_select.select_business = "";
+      this.formstate_select = false;
+      this.form_select.select_pixel = "";
     },
-    onSaveTabsManual(){
-       this.validate = true;
-       this.onValidatePixelName(this.pixelName);
-       this.onValidatePixelID(this.pixelID);
-    },
-    onValidatePixelName(newValue) {
-      let validate = this.validateRegexOnlyHasNumber(newValue);
-      if(newValue != ""){
-        if (validate) {
-            this.error.pixelName = "Không được nhập kí tự số";
-          }else{
-            this.error.pixelName = "";
-          }
+    onSaveAutoTab() {
+      this.formstate_select = true;
+      if (this.validationSelectComputed.valid) {
+        alert("success");
       }
-      
-      console.log(this.error);
     },
-    onValidatePixelID(newValue) {
-        if(newValue != ""){
-            let validate = this.validateRegexOnlyHasNumber(newValue);
-            if (!validate) {
-              this.error.pixelID = "Không được nhập kí tự chữ";
-            }else{
-                this.error.pixelID = "";
-            }
-        }
-      
-        console.log(this.error);
-      },
-    // validate method 
+
+    // manual tabs
+    onSaveTabsManual() {
+      this.formstate_input = true;
+      if(this.validationInputComputed.valid){
+        alert('success')
+      }
+    },
+    // validate method
     validateRegexOnlyHasString(value) {
-        let pattern = /^[a-zA-Z]+$/;
-        return pattern.test(value);
-      },
-      
+      let pattern = /^[a-zA-Z]+$/;
+      return pattern.test(value);
+    },
+
     validateRegexOnlyHasNumber(value) {
-          let pattern = /^[0-9]+$/;
-          return pattern.test(value);
-      },
+      let pattern = /^[0-9]+$/;
+      return pattern.test(value);
+    },
   },
-  watch: {
-    SelectedBusinessAccount: function (newValue) {
-      let newData = [...this.listPixelAccount].filter(
-        (item) => item.parentId == newValue
+  computed: {
+    listPixelAccountFilter() {
+      return [...this.list_pixel_account].filter(
+        (item) => item.parentId == this.form_select.select_business
       );
-      this.listPixelAccountFilter = newData;
-
-      if (newData.length == 0) {
-        this.isShowAlert = true;
-      }
-
-      if (newData.length > 0) {
-        this.isShowAlert = false;
-      }
-
-      if (this.SelectedBusinessAccount == "") {
-        this.isShowAlert = false;
-      }
     },
-    pixelName: function(newValue){
-        if(this.validate){
-            this.onValidatePixelName(newValue);
-        }
+    validationSelectComputed() {
+      const select_business = {
+        required: this.form_select.select_business ? true : false,
+      };
+
+      let select_pixel = {
+        required: true,
+        empty: this.listPixelAccountFilter.length > 0 ? true : false,
+      };
+
+      if (
+        this.form_select.select_business &&
+        this.listPixelAccountFilter.length > 0
+      ) {
+        select_pixel = {
+          ...select_pixel,
+          required: this.form_select.select_pixel ? true : false,
+        };
+      }
+
+      if (this.form_select.select_business == "") {
+        select_pixel = {
+          ...select_pixel,
+          empty: true,
+        };
+      }
+
+      return {
+        form: {
+          select_business,
+          select_pixel,
+        },
+        valid:
+          select_business.required &&
+          select_pixel.required &&
+          select_pixel.empty,
+      };
     },
-    pixelID: function(newValue){
-        if(this.validate){
-            console.log('change')
-            this.onValidatePixelID(newValue);
-        }
+    validationInputComputed() {
+      const name = {
+        required: this.form_input.name ? true : false,
+        is_string: !this.validateRegexOnlyHasNumber(this.form_input.name),
+      };
+      const id = {
+        required: this.form_input.id ? true : false,
+        is_number: this.validateRegexOnlyHasNumber(this.form_input.id),
+      };
+      return {
+        form: {
+          name,
+          id,
+        },
+        valid: name.required && name.is_string && id.required && id.is_number,
+      };
     },
   },
 });
-
-
-  

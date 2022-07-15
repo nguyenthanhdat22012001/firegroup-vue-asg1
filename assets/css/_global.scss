@@ -42,15 +42,28 @@ h4{
     font-size: 24px;
 }
 
+#app{
+    background-color: $bgr-white-medium;
+}
+
 .wrapper{
     max-width: $width;
     margin: 0 auto;
 }
 
 .container{
+    position: relative;
     width: 100%;
     padding: 33px 40px 27px 40px;
-    background-color: $bgr-white-medium;
+    background-color: $bgr-white;
+}
+
+.close-tab{
+    position: absolute;
+    content: "";
+    top: 11px;
+    right: 13px;
+    cursor: pointer;
 }
 
 .main{
@@ -88,4 +101,8 @@ h4{
 
 .text-strong{
     font-weight: 700;
+}
+
+.pt-50px{
+    padding-top: 50px;
 }

@@ -107,4 +107,9 @@
       &__checkbox:checked[type="checkbox"]::before {
         left: 36px - 17px;
       }
+      &__status-error{
+        color: #d30000;
+        margin-top: 10px;
+        font-size: 12px;
+      }
 }

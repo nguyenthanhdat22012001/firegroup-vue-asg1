@@ -39,15 +39,28 @@ h4 {
   font-size: 24px;
 }
 
+#app {
+  background-color: #F5F5F5;
+}
+
 .wrapper {
   max-width: 500px;
   margin: 0 auto;
 }
 
 .container {
+  position: relative;
   width: 100%;
   padding: 33px 40px 27px 40px;
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
+}
+
+.close-tab {
+  position: absolute;
+  content: "";
+  top: 11px;
+  right: 13px;
+  cursor: pointer;
 }
 
 .main {
@@ -125,6 +138,10 @@ h4 {
 
 .text-strong {
   font-weight: 700;
+}
+
+.pt-50px {
+  padding-top: 50px;
 }
 
 .btn {
@@ -343,6 +360,12 @@ h4 {
 
 .form__checkbox:checked[type="checkbox"]::before {
   left: 19px;
+}
+
+.form__status-error {
+  color: #d30000;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .tabs {
